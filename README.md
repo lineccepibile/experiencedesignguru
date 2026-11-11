@@ -62,3 +62,7 @@ Content that helps most (to add in the design):
 - Caorle photo with the coloured houses (current one is the bell tower)
 - Linda to rewrite the draft copy in each chapter
 - Link target for "Get in touch" (`#contact`)
+
+## FAQ page (hidden)
+
+`/faq/` is not in the menu on purpose. It answers owners' questions in their own words for search engines and AI assistants (FAQPage structured data) and is listed in sitemap.xml and llms.txt. Edit the questions in `scripts/faq_data.py`, then run `python3 scripts/build-faq.py`.
