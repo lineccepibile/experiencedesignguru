@@ -1,0 +1,10 @@
+# The Youngest Script is a licensed font: never commit it to this public repo.
+# Put the-youngest-script.woff2 in assets/fonts/ locally and upload it with the deploy.
+assets/fonts/*.woff2
+assets/fonts/*.woff
+assets/fonts/*.ttf
+assets/fonts/*.otf
+
+.DS_Store
+__pycache__/
+node_modules/

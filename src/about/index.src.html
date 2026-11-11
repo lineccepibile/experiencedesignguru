@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Linda Covino · ExperienceDesignGuru</title>
+<meta name="description" content="Linda Covino's story, from Caorle and Milan to Dubai, told as a pop-up book.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Josefin+Sans:wght@400;600;700&family=Poppins:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:"YS";src:url({{FONT}}) format("woff2");font-display:block}
+:root{
+  --olive:#76765B; --cream:#EFEDE8; --cream2:#EBE8E1; --teal:#059492; --coral:#DB7572;
+  --pink:#EF9898; --gold:#BBA36D; --dolive:#55593E; --ink:#1F1E1C; --paper:#FAF8F3;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{
+  font-family:Poppins,system-ui,sans-serif;color:var(--cream);-webkit-font-smoothing:antialiased;
+  background:
+    radial-gradient(60% 55% at 50% 45%,rgba(255,255,255,.07),transparent 70%),
+    repeating-linear-gradient(118deg,rgba(255,255,255,.018) 0 2px,transparent 2px 9px),
+    repeating-linear-gradient(118deg,rgba(0,0,0,.25) 0 1px,transparent 1px 37px),
+    linear-gradient(160deg,#24231f,#141412);
+  background-color:#171614;
+}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.script{font-family:"YS",Allura,cursive;font-weight:400;line-height:1.15}
+.eyebrow{font-family:"Josefin Sans",sans-serif;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+
+/* chrome */
+.brand{position:fixed;top:16px;left:0;right:0;text-align:center;z-index:30;pointer-events:none}
+.brand .eyebrow{font-size:11px;color:var(--gold)}
+.brand .script{font-size:30px;color:var(--cream);display:block;margin-top:6px}
+.proto{position:fixed;top:16px;left:16px;z-index:30;font:600 10px/1 "Josefin Sans";letter-spacing:.14em;text-transform:uppercase;background:rgba(239,237,232,.1);color:rgba(239,237,232,.7);padding:8px 12px;border-radius:999px}
+.foot{position:fixed;bottom:14px;left:20px;right:20px;display:flex;justify-content:space-between;font:400 10.5px Poppins;color:rgba(239,237,232,.35);z-index:30}
+
+.arrow{all:unset;position:fixed;top:50%;transform:translateY(-50%);z-index:30;cursor:pointer;color:rgba(239,237,232,.8);padding:18px;transition:opacity .4s ease,color .2s}
+.arrow svg{width:46px;height:20px;display:block;transition:transform .25s ease}
+.arrow.prev{left:clamp(6px,2.5vw,40px)} .arrow.next{right:clamp(6px,2.5vw,40px)}
+.arrow.prev:hover svg{transform:translateX(-5px)} .arrow.next:hover svg{transform:translateX(5px)}
+.arrow:hover{color:#fff}
+.arrow:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:8px}
+.arrow[disabled]{opacity:.18;cursor:default}
+
+.dots{position:fixed;left:50%;bottom:44px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;z-index:30;transition:opacity .5s}
+.dots button{all:unset;cursor:pointer;width:9px;height:9px;border-radius:50%;background:var(--c);opacity:.55;transition:all .3s ease;position:relative}
+.dots button:hover{opacity:1;transform:scale(1.3)}
+.dots button[aria-current="true"]{opacity:1;transform:scale(1.7);box-shadow:0 0 0 2px #171614,0 0 0 3px var(--c)}
+.dots button:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+.dots button span{position:absolute;bottom:20px;left:50%;transform:translateX(-50%) translateY(4px);white-space:nowrap;font:600 9.5px "Josefin Sans";letter-spacing:.16em;text-transform:uppercase;color:var(--cream);opacity:0;pointer-events:none;transition:all .2s}
+.dots button:hover span,.dots button:focus-visible span{opacity:1;transform:translateX(-50%)}
+.is-intro .arrow,.is-intro .dots{opacity:0;pointer-events:none}
+
+.introcard{position:fixed;left:0;right:0;bottom:8vh;text-align:center;z-index:30;transition:opacity .6s ease,transform .6s ease}
+.introcard .script{font-size:clamp(36px,4.2vw,52px);color:var(--gold)}
+.introcard p{font:300 14px/1.6 Poppins;color:rgba(239,237,232,.7);margin:2px 0 18px}
+.openbtn{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:10px;font:500 13px Poppins;color:var(--ink);background:var(--cream);padding:11px 22px;border-radius:999px;opacity:0;transform:translateY(8px);transition:all .5s ease .2s;box-shadow:0 10px 30px -10px rgba(0,0,0,.6)}
+.openbtn svg{width:16px;height:16px}
+.openbtn:hover{background:#fff}
+.openbtn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.landed .openbtn{opacity:1;transform:none}
+body:not(.is-intro) .introcard{opacity:0;transform:translateY(20px);pointer-events:none}
+
+/* ===== 3D scene ===== */
+.scene{position:fixed;inset:0;display:grid;place-items:center;perspective:2200px;perspective-origin:50% 42%}
+.wrap{--is:.5;transform-style:preserve-3d;transition:transform 1.5s cubic-bezier(.6,.05,.2,1);transform:translateY(-1vh)}
+.is-intro .wrap{transform:translateY(-6vh) scale(var(--is)) rotateX(50deg) rotateZ(-13deg)}
+.entering .wrap{animation:drop 2.4s cubic-bezier(.2,.75,.2,1) both}
+@keyframes drop{
+  0%{transform:translateY(-40vh) translateZ(-2600px) scale(var(--is)) rotateX(75deg) rotateZ(-250deg);opacity:0}
+  25%{opacity:1}
+  100%{transform:translateY(-6vh) scale(var(--is)) rotateX(50deg) rotateZ(-13deg)}
+}
+.tilt{transform-style:preserve-3d;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.sway .tilt{animation:sway 7s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotateY(-3deg) rotateX(2deg)}50%{transform:rotateY(3deg) rotateX(-1deg)}}
+
+.book{
+  --pw:min(44vw,640px,calc(66vh * .875));
+  --ph:calc(var(--pw) / .875);
+  --open:0; --lp:0;
+  width:calc(var(--pw) * 2);height:var(--ph);position:relative;transform-style:preserve-3d;
+  transform:translateX(calc(var(--pw) * -.5 * (1 - var(--open))));
+  cursor:pointer;
+}
+.floor{position:absolute;top:3%;bottom:-1%;right:-.5%;left:calc(var(--pw) * (1 - var(--lp)));border-radius:3% / 3.4%;
+  box-shadow:0 50px 80px -20px rgba(0,0,0,.85),0 16px 30px -12px rgba(0,0,0,.6);transform:translateZ(-14px)}
+.block{position:absolute;top:0;width:var(--pw);height:var(--ph);background:#d9d3c5}
+.block.r{left:50%;border-radius:0 calc(var(--pw)*.035) calc(var(--pw)*.035) 0}
+.block.l{left:0;border-radius:calc(var(--pw)*.035) 0 0 calc(var(--pw)*.035);opacity:var(--lp)}
+.block.back{background:var(--dolive)}
+
+.leaf{position:absolute;top:0;left:50%;width:var(--pw);height:var(--ph);transform-style:preserve-3d}
+/* each page is four hinged strips so it can curl while it turns */
+.seg{position:absolute;top:0;left:0;width:calc(var(--pw) / 4 + .6px);height:var(--ph);transform-origin:0 50%;transform-style:preserve-3d}
+.seg .seg{left:calc(var(--pw) / 4)}
+.sf{position:absolute;inset:0;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.sf.back{transform:rotateY(180deg)}
+.sfi{position:absolute;top:0;width:var(--pw);height:var(--ph);container-type:size;overflow:hidden}
+.sfi.front{border-radius:0 calc(var(--pw) * .035) calc(var(--pw) * .035) 0}
+.sfi.back{border-radius:calc(var(--pw) * .035) 0 0 calc(var(--pw) * .035)}
+.sfi.front::after,.sfi.back::after{content:"";position:absolute;top:0;bottom:0;width:10%;pointer-events:none;z-index:6}
+.sfi.front::after{left:0;background:linear-gradient(90deg,rgba(0,0,0,.32),rgba(0,0,0,.08) 45%,transparent)}
+.sfi.back::after{right:0;background:linear-gradient(270deg,rgba(0,0,0,.32),rgba(0,0,0,.08) 45%,transparent)}
+.sfi.cover::after{width:5%}
+.sh,.gl{position:absolute;inset:0;pointer-events:none;z-index:7;opacity:0}
+.sh{background:#000}
+.gl{background:#fff}
+
+/* ===== pop-up layer: cut-outs standing off the page ===== */
+.pw{position:absolute;inset:0;transform-style:preserve-3d;pointer-events:none}
+.pw.back{transform:rotateY(180deg)}
+.pop{position:absolute;top:0;width:var(--pw);height:var(--ph);transform-style:preserve-3d;pointer-events:none;font-size:calc(var(--pw) / 100)}
+.pe{position:absolute;transform-style:preserve-3d;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-origin:50% 90%;pointer-events:auto;cursor:pointer;
+  transform:translateZ(calc(var(--pw) * var(--z) * var(--e,0) + .5px)) rotateZ(var(--r,0deg)) scale(calc(.9 + .1 * var(--e,0)))}
+.pi{transform-style:preserve-3d;backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.pe:hover .pi{transform:translateZ(calc(var(--pw) * .05)) scale(1.05)}
+.pa{backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-origin:50% 85%;
+  filter:drop-shadow(0 calc(var(--pw) * .024 * var(--e,0) + 1px) calc(var(--pw) * .022 * var(--e,0) + 1px) rgba(0,0,0,calc(.18 + .22 * var(--e,0))));
+  opacity:min(1, calc(var(--e,0) * 3))}
+.pe:hover .pa{filter:drop-shadow(0 calc(var(--pw) * .045) calc(var(--pw) * .035) rgba(0,0,0,.42))}
+.pe img{width:100%;height:auto;display:block;-webkit-user-drag:none;user-select:none}
+.live .pa{animation:bob var(--d,6s) ease-in-out var(--dl,0s) infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-2.5%) rotate(var(--wob,1.4deg))}}
+.pa.act-jump{animation:jump .7s cubic-bezier(.2,.8,.3,1)}
+.pa.act-ring{animation:ring .9s ease-out}
+.pa.act-spin{animation:spin .9s cubic-bezier(.4,0,.2,1);backface-visibility:visible}
+@keyframes jump{0%{transform:none}35%{transform:translateY(-16%) rotate(-4deg) scale(1.06)}70%{transform:translateY(3%) scale(.98)}100%{transform:none}}
+@keyframes ring{0%,100%{transform:rotate(0)}12%{transform:rotate(-10deg)}26%{transform:rotate(9deg)}40%{transform:rotate(-7deg)}54%{transform:rotate(5deg)}70%{transform:rotate(-2deg)}}
+@keyframes spin{from{transform:rotateY(0)}to{transform:rotateY(360deg)}}
+.ltr{font-family:Poppins,sans-serif;font-weight:800;line-height:.9;letter-spacing:-.02em;text-transform:uppercase;white-space:nowrap;color:var(--c)}
+.scrp{white-space:nowrap;color:var(--c)}
+.ding{position:absolute;left:60%;top:-18%;font-family:"YS",Allura,cursive;font-size:7em;color:#FAF8F3;pointer-events:none;animation:ding 1s ease-out forwards;text-shadow:0 .1em .3em rgba(0,0,0,.3)}
+@keyframes ding{0%{opacity:0;transform:translateY(20%) scale(.7)}25%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-40%)}}
+
+.card{background:#fff;color:var(--ink);border-radius:2.2em;padding:3.2em 3.6em;box-shadow:1.3em 1.3em 0 var(--c,var(--coral))}
+.card small{display:block;font:700 1.9em/1.2 "Josefin Sans";letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:1em}
+.card b{display:block;font:600 3.1em/1.25 Poppins}
+.card i{display:block;font:300 2.2em/1.4 Poppins;font-style:normal;color:#55534c;margin-top:.6em}
+
+.note{aspect-ratio:1;background:var(--c);display:grid;place-items:center;border-radius:.5em;box-shadow:inset 0 -1.6em 2em -1.6em rgba(0,0,0,.18)}
+.note span{font-family:"YS",Allura,cursive;font-size:4.6em;line-height:1;color:var(--t,var(--ink));padding-top:.2em}
+
+.stk{aspect-ratio:1;border-radius:50%;background:var(--c);border:.9em solid var(--paper);display:grid;place-items:center}
+.stk svg{width:52%;height:52%;color:var(--t,#fff)}
+.stk.seal{background:radial-gradient(circle at 35% 30%,#e3cf9c,#BBA36D 55%,#8f7a48);color:var(--ink);border-color:#d8c48f}
+.stk.seal b{font:700 4.4em "Josefin Sans";letter-spacing:.06em}
+
+.laptop .lid{background:#2c2b28;border-radius:2em 2em .6em .6em;padding:2em 2em 2.4em;aspect-ratio:16/10.4}
+.laptop .scr{background:var(--paper);height:100%;border-radius:.6em;padding:2.4em 2.6em;color:var(--ink);display:flex;flex-direction:column}
+.laptop .scr small{font:700 1.6em "Josefin Sans";letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+.laptop .scr b{font:600 2.6em/1.2 Poppins;margin:.3em 0 .4em}
+.laptop .scr svg{flex:1;width:100%}
+.laptop .base{height:2.6em;background:linear-gradient(#dcd8ce,#a7a295);border-radius:0 0 4em 4em;margin:0 -7%;position:relative}
+.laptop .base::after{content:"";position:absolute;left:42%;right:42%;top:0;height:.9em;background:#8f8a7e;border-radius:0 0 1em 1em}
+
+.pol{background:#FAF8F3;padding:2.2em 2.2em 0;border-radius:.5em}
+.pol .ph{overflow:hidden;border-radius:.2em}
+.pol .ph img{width:100%;height:100%;object-fit:cover}
+.pol .cap{font-family:"YS",Allura,cursive;font-size:5.4em;line-height:1.25;color:var(--ink);text-align:center;padding:.12em 0 .22em}
+.lcard{aspect-ratio:1.586;border-radius:2.4em;padding:3em 3.4em;color:var(--ink);display:flex;flex-direction:column;justify-content:space-between;
+  background:linear-gradient(135deg,#e6d3a2 0%,#BBA36D 45%,#94804d 100%);box-shadow:inset 0 0 0 .3em rgba(255,255,255,.25)}
+.lcard .top{display:flex;justify-content:space-between;align-items:center}
+.lcard small{font:700 1.8em "Josefin Sans";letter-spacing:.22em}
+.lcard .chip{width:6em;height:4.6em;border-radius:1em;background:linear-gradient(135deg,#f3e6c0,#c9b27a);box-shadow:inset 0 0 0 .25em rgba(0,0,0,.12)}
+.lcard .stars{display:flex;gap:.8em}
+.lcard .stars svg{width:3.4em;height:3.4em;fill:var(--ink);stroke:none}
+.lcard b{font:600 2.6em Poppins}
+
+.bp{background:#fff;border-radius:2em;display:flex;color:var(--ink);overflow:hidden}
+.bp .main{flex:1;padding:2.4em 3em}
+.bp .stub{width:26%;border-left:.35em dashed #d6d1c4;padding:2.4em 2em;display:flex;flex-direction:column;justify-content:center;align-items:center;background:var(--cream)}
+.bp small{display:block;font:700 1.6em "Josefin Sans";letter-spacing:.2em;color:var(--teal)}
+.bp .route{display:flex;align-items:center;gap:1.6em;margin-top:.8em}
+.bp .route b{font:700 4.6em/1 Poppins}
+.bp .route svg{width:4em;height:4em;color:var(--coral)}
+.bp .cities{display:flex;justify-content:space-between;font:400 1.8em Poppins;color:#6b685e;margin-top:.4em}
+.bp .stub b{font:700 3.6em Poppins}
+.bp .stub span{font:600 1.5em "Josefin Sans";letter-spacing:.16em;color:#6b685e}
+
+.ccard{background:#fff;border-radius:2.2em;overflow:hidden;color:var(--ink);box-shadow:1.3em 1.3em 0 var(--teal)}
+.ccard .band{background:var(--teal);color:#fff;padding:2em 3em;font:700 1.8em "Josefin Sans";letter-spacing:.2em;text-transform:uppercase}
+.ccard .body{padding:2.4em 3em 3em}
+.ccard .t{font-family:"YS",Allura,cursive;font-size:5.6em;line-height:1.05;color:var(--coral);padding-top:.15em}
+.ccard i{display:block;font:400 2.1em/1.4 Poppins;font-style:normal;color:#55534c;margin-top:.6em}
+
+/* one spread = one illustration across both pages */
+.spread{position:absolute;top:0;height:100%;width:200cqw;overflow:hidden;background:var(--bg);color:var(--fg)}
+.back .spread{left:0}
+.front .spread{left:-100cqw}
+.spread .tex{position:absolute;inset:0;opacity:.5;
+  background:radial-gradient(90% 70% at 30% 20%,rgba(255,255,255,.14),transparent 60%),
+             radial-gradient(60% 60% at 85% 90%,rgba(0,0,0,.14),transparent 70%),
+             repeating-radial-gradient(circle at 20% 30%,rgba(255,255,255,.035) 0 2px,transparent 2px 5px)}
+.spread .big{position:absolute;left:50%;top:9%;transform:translateX(-50%);font:800 var(--bs) / .9 Poppins;letter-spacing:-.02em;text-transform:uppercase;white-space:nowrap;color:var(--bigc);
+  text-shadow:0 .9cqw 0 rgba(0,0,0,.12)}
+.measured .big{color:rgba(0,0,0,.12);text-shadow:none}
+.spread .photo{position:absolute;left:0;top:0;width:100cqw;height:100%;background-size:cover;background-position:center}
+.spread .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.34),rgba(0,0,0,0) 42%,rgba(0,0,0,0) 62%,rgba(0,0,0,.22))}
+.ph-caorle{background-image:url({{IMG:bg_caorle}})}
+.ph-milan{background-image:url({{IMG:bg_milan}})}
+.ph-dubai{background-image:url({{IMG:bg_dubai}})}
+.full{position:absolute;top:0;left:0;width:var(--pw);height:var(--ph);overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;visibility:hidden}
+.full.back{transform:rotateY(180deg)}
+.full .sfi{left:0}
+.leaf.rest .full{visibility:visible}
+.leaf.rest .sf{visibility:hidden}
+.live.fly .pa{animation:fly var(--d,6s) ease-in-out var(--dl,0s) infinite}
+@keyframes fly{0%,100%{transform:translate(0,0) rotate(-3deg)}35%{transform:translate(7%,-9%) rotate(2deg)}70%{transform:translate(-4%,-4%) rotate(-1deg)}}
+.measured .spread .scr:not(.keep){visibility:hidden}
+.spread .scr{position:absolute;z-index:2;font-size:var(--ss,15cqw);color:var(--acc);left:var(--sx,58%);top:var(--sy,38%);white-space:nowrap;text-shadow:0 .5cqw 1.2cqw rgba(0,0,0,.15)}
+.spread .art{position:absolute;left:5%;bottom:7%;width:36%;color:var(--line);opacity:.95}
+.spread .art svg{width:100%;height:auto;display:block}
+.spread .copy{position:absolute;left:58%;right:6%;bottom:8%;color:var(--txt)}
+.spread .copy .eyebrow{font-size:2.3cqw;opacity:.85}
+.spread .copy h2{font:600 4.6cqw/1.12 Poppins;margin:1.4cqw 0 1.8cqw}
+.spread .copy p{font:400 2.55cqw/1.6 Poppins;margin-bottom:1.6cqw;opacity:.92}
+.spread .copy .q{font-weight:500;opacity:1;border-left:.5cqw solid currentColor;padding-left:2.2cqw}
+.spread .copy a:not(.btn){color:inherit}
+.spread .num{position:absolute;top:5%;font:600 2.2cqw "Josefin Sans";letter-spacing:.18em;opacity:.6}
+.spread .num.l{left:5%} .spread .num.r{right:5%}
+.btn{display:inline-block;text-decoration:none;font:500 2.5cqw Poppins;padding:1.8cqw 3.6cqw;border-radius:999px;margin-top:.6cqw}
+.btn.solid{background:var(--ink);color:var(--cream)}
+
+/* cover */
+.cover-face{position:absolute;inset:0;background:var(--dolive);color:var(--gold);display:grid;place-items:center;text-align:center;
+  background-image:radial-gradient(110% 80% at 70% 15%,rgba(255,255,255,.1),transparent 60%),repeating-radial-gradient(circle at 30% 70%,rgba(255,255,255,.03) 0 2px,transparent 2px 6px)}
+.cover-face .frame{position:absolute;inset:6cqw;border:1px solid rgba(187,163,109,.8);border-radius:2.5cqw}
+.cover-face .eyebrow{font-size:2.8cqw}
+.cover-face .script{font-size:21cqw;margin:2cqw 0 1cqw}
+.cover-face .name{font:500 4.6cqw Poppins;letter-spacing:.32em;color:var(--cream);text-transform:uppercase}
+.cover-face .sub{margin-top:3cqw;font:300 3.1cqw Poppins;color:rgba(239,237,232,.7)}
+.backcover{position:absolute;inset:0;background:var(--dolive)}
+
+.end .links{list-style:none}
+.end .links li{border-top:1px solid rgba(239,237,232,.18);padding:1.8cqw 0}
+.end .links a{text-decoration:none;font:500 3cqw Poppins;display:flex;justify-content:space-between;align-items:center}
+.end .links small{display:block;font:600 1.9cqw "Josefin Sans";letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.6cqw}
+
+.caption{display:none}
+@media (max-width:760px){
+  .book{--pw:min(46vw,calc(52vh * .875))}
+  .spread .copy{display:none}
+  .caption{display:block;position:fixed;left:22px;right:22px;bottom:74px;z-index:30;color:var(--cream);transition:opacity .35s ease}
+  .caption .eyebrow{font-size:10px;color:var(--gold)}
+  .caption h2{font:600 20px/1.2 Poppins;margin:6px 0 6px}
+  .caption p{font:300 13.5px/1.55 Poppins;color:rgba(239,237,232,.8)}
+  .caption a{color:var(--gold)}
+  .scene{place-items:start center;padding-top:22vh}
+  .arrow{top:auto;bottom:30px;transform:none;padding:10px}
+  .arrow svg{width:34px}
+  .dots{bottom:44px;gap:8px}
+  .foot{display:none}
+  .is-intro .caption{opacity:0}
+  .wrap{--is:.85}
+  .proto{top:auto;bottom:8px;left:50%;transform:translateX(-50%);padding:5px 10px;font-size:9px}
+}
+@media (prefers-reduced-motion:reduce){
+  .wrap,.tilt{transition:none}
+  .entering .wrap,.sway .tilt{animation:none}
+}
+</style>
+</head>
+<body class="is-intro">
+
+<header class="brand"><div class="eyebrow">ExperienceDesignGuru</div><span class="script">about Linda</span></header>
+
+<main>
+  <div class="scene"><div class="wrap"><div class="tilt" id="tilt"><div class="book" id="book" aria-hidden="true">
+    <div class="floor"></div>
+  </div></div></div></div>
+
+  <div class="introcard">
+    <div class="script">From Caorle to Dubai</div>
+    <p>My story in seven chapters</p>
+    <button class="openbtn" id="openbtn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-2-1.5-5-2-8-1.5v13c3-.5 6 0 8 1.5M12 6c2-1.5 5-2 8-1.5v13c-3-.5-6 0-8 1.5M12 6v13"/></svg>
+      Open the book
+    </button>
+  </div>
+
+  <button class="arrow prev" id="prev" type="button" aria-label="Previous page">
+    <svg viewBox="0 0 46 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M44 11c-12-3-26-2-41-1M10 3 3 10l8 7"/></svg>
+  </button>
+  <button class="arrow next" id="next" type="button" aria-label="Next page">
+    <svg viewBox="0 0 46 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9c12 3 26 2 41 1M36 3l7 7-8 7"/></svg>
+  </button>
+  <nav class="dots" id="dots" aria-label="Chapters"></nav>
+  <div class="caption" id="caption" aria-hidden="true"></div>
+  <div class="sr" id="live" aria-live="polite"></div>
+  <article class="sr" id="srstory"></article>
+</main>
+
+<footer class="foot"><span>Linda Covino · ExperienceDesignGuru</span><span>Use the arrows, the dots, or your keyboard</span></footer>
+
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const IMG = { moka:"{{IMG:moka}}", dallah:"{{IMG:dallah}}", suitcase:"{{IMG:suitcase}}", passport:"{{IMG:passport}}", marker:"{{IMG:marker}}", bell:"{{IMG:bell}}", pigeon:"{{IMG:pigeon}}", pigeon2:"{{IMG:pigeon2}}", caorle_sea:"{{IMG:caorle_sea}}" };
+  const ICON = { pin:`{{ICON:map-pin}}`, chat:`{{ICON:message-circle-heart}}`, layers:`{{ICON:layers}}`, users:`{{ICON:users}}`,
+                 sparkles:`{{ICON:sparkles}}`, star:`{{ICON:star}}`, plane:`{{ICON:plane}}`, idea:`{{ICON:lightbulb}}`, hand:`{{ICON:heart-handshake}}`, waves:`{{ICON:waves}}`, house:`{{ICON:house}}` };
+
+  /* ---------- pop-up pieces ---------- */
+  const img = (k,alt) => `<img src="${IMG[k]}" alt="${alt}">`;
+  const stk = (icon,c,t) => `<div class="stk" style="--c:${c};--t:${t||'#fff'}">${ICON[icon]}</div>`;
+  const note = (word,c,t) => `<div class="note" style="--c:${c};--t:${t||'#1F1E1C'}"><span>${word}</span></div>`;
+  const card = (small,b,i,c) => `<div class="card" style="--c:${c}"><small>${small}</small><b>${b}</b>${i?`<i>${i}</i>`:''}</div>`;
+  const polaroid = (k,cap,ar) => `<div class="pol"><div class="ph" style="aspect-ratio:${ar||'4/5'}"><img src="${IMG[k]}" alt="${cap}"></div><div class="cap">${cap}</div></div>`;
+  const starRow = `<div class="stars">${[0,0,0].map(()=>ICON.star).join('')}</div>`;
+  const laptop = `<div class="laptop"><div class="lid"><div class="scr">
+      <small>Customer journey</small><b>Every touchpoint, one story</b>
+      <svg viewBox="0 0 300 122" fill="none" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 92H290" stroke="#d6d1c4" stroke-width="2"/>
+        <path d="M24 70C60 70 70 30 104 34s50 56 84 52 50-66 88-70" stroke="#059492" stroke-width="4"/>
+        ${[[24,70,'Discover'],[104,34,'Book'],[188,86,'Stay'],[276,16,'Share']].map(([x,y,l])=>`<circle cx="${x}" cy="${y}" r="7" fill="#DB7572" stroke="#FAF8F3" stroke-width="3"/><text x="${x}" y="108" font-family="Poppins" font-size="12" fill="#55534c" text-anchor="middle">${l}</text>`).join('')}
+      </svg></div></div><div class="base"></div></div>`;
+  const lcard = `<div class="lcard"><div class="top"><small>MEMBER</small><div class="chip"></div></div>${starRow}<div class="top"><b>Loyalty</b><small>GOLD</small></div></div>`;
+  const bpass = `<div class="bp"><div class="main"><small>Boarding pass</small>
+      <div class="route"><b>MXP</b>${ICON.plane}<b>DXB</b></div>
+      <div class="cities"><span>Milan</span><span>Dubai</span></div></div>
+      <div class="stub"><span>SEAT</span><b>1A</b></div></div>`;
+  const ccard = `<div class="ccard"><div class="band">Mini course</div><div class="body">
+      <div class="t">Stories that Sell</div><i>Designing experiences guests remember</i></div></div>`;
+
+  /* ---------- spreads (draft copy) ---------- */
+  const spreads = [
+    { tab:"Caorle", bg:"#EFEDE8", fg:"#DB7572", acc:"#059492", txt:"#1F1E1C", photo:"caorle", big:"Caorle", scr:"home", sx:"58%", sy:"31%",
+      eyebrow:"Chapter one · Caorle", title:"Where it all started",
+      body:["My story starts by the sea in the Veneto, between Caorle and Portogruaro, where my family home is still today."],
+      q:"Hospitality starts with how you make people feel at home.",
+      pops:[
+        {s:'l',x:8, y:58,w:46,z:.1, r:-5,act:'spin',html:polaroid('caorle_sea','by the sea','3/2')},
+        {s:'l',x:62,y:74,w:15,z:.12,html:stk('waves','#059492')},
+      ]},
+    { tab:"Milan", bg:"#76765B", fg:"#EFEDE8", acc:"#EF9898", txt:"#FFFFFF", photo:"milan", big:"Milano", scr:"learning to see", sx:"53%", sy:"33%",
+      eyebrow:"Chapter two · Milan", title:"Where I learned to see",
+      body:["Twenty years in Milan taught me to see everything as something designed. At <strong>Politecnico di Milano</strong> I completed a Master's in Product-Service System Design, and learned the idea I still work by:"],
+      q:"Every experience can be designed on purpose.",
+      pops:[
+        {s:'l',x:6, y:50,w:28,z:.09,r:-3,html:img('moka','Moka pot')},
+        {s:'l',x:40,y:70,w:52,z:.07,act:'spin',html:card('Politecnico di Milano',"Master's in Product-Service System Design",'',"#DB7572")},
+        {s:'l',x:58,y:28,w:26,z:.17,r:-8,fly:true,html:img('pigeon','Pigeon in flight')},
+        {s:'l',x:12,y:24,w:17,z:.13,r:6, fly:true,html:img('pigeon2','Pigeon in flight')},
+      ]},
+    { tab:"Logotel", bg:"#DB7572", fg:"#EFEDE8", acc:"#1F1E1C", txt:"#1F1E1C", big:"Listen", scr:"learning to", sx:"15%", sy:"1%",
+      eyebrow:"Chapter three · Logotel", title:"Learning to listen",
+      body:["My first design home was <strong>Logotel</strong>, a service design company in Milan. Workshops, research, journeys and prototypes, always with real people on the other side."],
+      q:"Design with people, not just for them.",
+      pops:[
+        {s:'l',x:8, y:40,w:23,z:.04,html:note('listen','#EFEDE8')},
+        {s:'l',x:34,y:37,w:23,z:.065,html:note('journeys','#BBA36D')},
+        {s:'l',x:60,y:41,w:23,z:.05,html:note('together','#059492','#FAF8F3')},
+        {s:'l',x:19,y:62,w:23,z:.075,html:note('prototype','#55593E','#FAF8F3')},
+        {s:'l',x:45,y:64,w:23,z:.045,html:note('test','#EFEDE8')},
+        {s:'l',x:9, y:86,w:52,z:.1, r:-7,html:img('marker','Marker pen')},
+        {s:'l',x:73,y:66,w:16,z:.12,html:stk('chat','#1F1E1C','#EF9898')},
+      ]},
+    { tab:"Deloitte", bg:"#55593E", fg:"#EBE8E1", acc:"#BBA36D", txt:"#FFFFFF", big:"Systems", scr:"thinking in", sx:"10%", sy:"1%",
+      eyebrow:"Chapter four · Deloitte Digital", title:"Thinking in systems",
+      body:["At <strong>Deloitte Digital</strong> I moved into customer experience strategy for large organisations. More brands, more channels, more moving parts."],
+      q:"A great idea only works when the whole organisation can deliver it.",
+      pops:[
+        {s:'l',x:7, y:40,w:74,z:.05,html:laptop},
+        {s:'l',x:72,y:33,w:16,z:.11,html:stk('layers','#BBA36D','#1F1E1C')},
+        {s:'l',x:78,y:70,w:14,z:.13,html:stk('users','#DB7572')},
+      ]},
+    { tab:"Dubai", bg:"#059492", fg:"#EFEDE8", acc:"#1F1E1C", txt:"#1F1E1C", photo:"dubai", big:"Dubai", scr:"a new chapter", sx:"52%", sy:"33%",
+      eyebrow:"Chapter five · Dubai", title:"A new chapter in the Gulf",
+      body:["Five years ago I moved to Dubai. Today I am <strong>Experience Design & Innovation Director at Majid Al Futtaim</strong>, where I lead SHARE, the group's loyalty programme."],
+      q:"People rarely remember a transaction. They remember how you made them feel.",
+      pops:[
+        {s:'l',x:6, y:48,w:34,z:.09,html:img('dallah','Arabic coffee pot')},
+        {s:'l',x:46,y:66,w:44,z:.07,html:lcard,act:'spin'},
+      ]},
+    { tab:"Travel", bg:"#BBA36D", fg:"#EFEDE8", acc:"#55593E", txt:"#1F1E1C", big:"Wander", scr:"61 countries", sx:"53%", sy:"33%",
+      eyebrow:"Chapter six · The traveller", title:"61 countries and counting",
+      body:["Travel is my research lab. Every check-in, tour and welcome kit is a small case study in experience design.", "I write about it on <a href=\"https://thevisualler.com\" target=\"_blank\" rel=\"noopener\"><strong>The Visualler</strong></a>."],
+      pops:[
+        {s:'l',x:6, y:29,w:52,z:.05,html:bpass,act:'spin'},
+        {s:'l',x:5, y:53,w:57,z:.07,html:img('suitcase','Vintage suitcase and camera')},
+        {s:'l',x:52,y:36,w:42,z:.1, r:5,html:img('passport','Stamped passport'),act:'spin'},
+        {s:'l',x:72,y:78,w:15,z:.12,html:stk('pin','#DB7572')},
+      ]},
+    { tab:"Now", bg:"#EF9898", fg:"#EFEDE8", acc:"#059492", txt:"#1F1E1C", big:"Now", scr:"why EDG", sx:"58%", sy:"32%",
+      eyebrow:"Chapter seven · Now", title:"Why ExperienceDesignGuru",
+      body:["I share what I have learned with hosts, hotels and travel brands: how to design experiences guests remember, and the stories that sell them."],
+      cta:true,
+      pops:[
+        {s:'l',x:7, y:38,w:40,z:.08,html:img('bell','Reception bell'),act:'ring'},
+        {s:'l',x:49,y:52,w:44,z:.06,html:ccard,act:'spin'},
+        {s:'l',x:70,y:30,w:14,z:.12,html:stk('sparkles','#059492')},
+      ]},
+    { tab:"The end", end:true, bg:"#2A2925", fg:"#EFEDE8", acc:"#BBA36D", txt:"#EFEDE8", big:"",
+      eyebrow:"The end", title:"Or the beginning of yours", body:[],
+      pops:[ {s:'l',x:62,y:68,w:18,z:.08,html:stk('hand','#BBA36D','#1F1E1C')} ] }
+  ];
+  const coverPops = [ {x:70,y:72,w:19,z:.04,r:-8,html:`<div class="stk seal"><b>EDG</b></div>`} ];
+
+  const bigSize = w => Math.min(34, 168/(w.length*.74)).toFixed(2)+'cqw';
+
+  function spreadHTML(s,k){
+    const vars = `--bg:${s.bg};--fg:${s.fg};--acc:${s.acc};--txt:${s.txt};--bigc:${s.fg};--bs:${bigSize(s.big||'x')};--sx:${s.sx||'50%'};--sy:${s.sy||'40%'}`;
+    if(s.end){
+      return `<div class="spread end" style="${vars}"><div class="tex"></div>
+        <div class="scr script keep" style="--ss:22cqw;--sx:9%;--sy:12%">the end</div>
+        <div style="position:absolute;left:10%;top:46%;width:30%;font:300 2.6cqw/1.6 Poppins;color:rgba(239,237,232,.75)">Thank you for reading my story. If it sounded like yours, let's keep going together.</div>
+        <div class="copy" style="bottom:auto;top:16%">
+          <div class="eyebrow" style="color:var(--gold)">Where to next</div>
+          <h2>Or the beginning of yours</h2>
+          <ul class="links">
+            <li><a href="#courses"><span><small>Learn</small>Explore the courses</span><span>&rarr;</span></a></li>
+            <li><a href="https://thevisualler.com" target="_blank" rel="noopener"><span><small>Read</small>The Visualler, my travel blog</span><span>&rarr;</span></a></li>
+            <li><a href="#contact"><span><small>Work with me</small>Get in touch</span><span>&rarr;</span></a></li>
+          </ul>
+        </div></div>`;
+    }
+    return `<div class="spread" style="${vars}"><div class="tex"></div>
+      ${s.photo?`<div class="photo ph-${s.photo}"></div>`:''}<div class="num l eyebrow">${String(k+1).padStart(2,'0')} / ${String(spreads.length-1).padStart(2,'0')}</div>
+      <div class="big">${[...s.big].map(c=>`<span>${c}</span>`).join('')}</div>
+      <div class="scr script">${s.scr}</div>
+      <div class="copy">
+        <div class="eyebrow">${s.eyebrow}</div>
+        <h2>${s.title}</h2>
+        ${s.body.map(p=>`<p>${p}</p>`).join('')}
+        ${s.q?`<p class="q">${s.q}</p>`:''}
+        ${s.cta?`<a class="btn solid" href="#courses">Explore the courses</a>`:''}
+      </div></div>`;
+  }
+  /* one pop-up piece: .pe carries depth, .pi lifts on hover, .pa bobs and reacts */
+  let seed=7; const rnd=()=>(seed=(seed*9301+49297)%233280)/233280;
+  const pieceHTML = p => {
+    const live = p.ltr ? '' : (p.fly ? ' live fly' : ' live');
+    const st = `left:${p.x}%;top:${p.y}%;width:${p.w}%;--z:${p.z};--r:${p.r||0}deg;--d:${(5+rnd()*3).toFixed(2)}s;--dl:${(-rnd()*6).toFixed(2)}s;--wob:${((rnd()-.5)*3).toFixed(2)}deg${p.c?`;--c:${p.c}`:''}`;
+    return `<div class="pe${p.ltr?' ltr-pe':''}${live}" data-act="${p.act||'jump'}" style="${st}"><div class="pi"><div class="pa">${p.html}</div></div></div>`;
+  };
+
+  const cover = `<div class="cover-face"><div class="frame"></div><div>
+      <div class="eyebrow">ExperienceDesignGuru</div>
+      <div class="script">my story</div>
+      <div class="name">Linda Covino</div>
+      <div class="sub">From Caorle to Dubai, in seven chapters</div></div></div>`;
+
+  /* leaf i: front = right half of spread i-1 (or the cover), back = left half of spread i */
+  const L = spreads.length + 1, N = 4, SW = 100/N;
+  const book = document.getElementById('book');
+  for(let k=1;k<=7;k++){
+    ['r','l'].forEach(side=>{
+      const b=document.createElement('div');
+      b.className='block '+side+(k===7?' back':'');
+      b.style.transform=`translateZ(${-1.6*k}px)`;
+      book.appendChild(b);
+    });
+  }
+  // strip k shows the page slice [k*SW, (k+1)*SW] measured from the spine
+  function segHTML(k, front, back, isCover){
+    const fo = -k*SW, bo = -(100-(k+1)*SW);
+    const inner = `<div class="sf front"><div class="sfi front${isCover?' cover':''}" style="left:calc(var(--pw) * ${fo/100})">${front}</div><div class="sh"></div><div class="gl"></div></div>
+      <div class="sf back"><div class="sfi back" style="left:calc(var(--pw) * ${bo/100})">${back}</div><div class="sh"></div><div class="gl"></div></div>
+      <div class="pw front"><div class="pop" style="left:calc(var(--pw) * ${fo/100})"></div></div>
+      <div class="pw back"><div class="pop" style="left:calc(var(--pw) * ${bo/100})"></div></div>`;
+    const full = k===0 ? `<div class="full front"><div class="sfi front${isCover?' cover':''}">${front}</div></div><div class="full back"><div class="sfi back">${back}</div></div>` : '';
+    return `<div class="seg" data-k="${k}">${full}${inner}${k<N-1?segHTML(k+1,front,back,isCover):''}</div>`;
+  }
+  const leaves=[];
+  for(let i=0;i<L;i++){
+    const front = i===0 ? cover : spreadHTML(spreads[i-1], i-1);
+    const back = i<L-1 ? spreadHTML(spreads[i], i) : `<div class="backcover"></div>`;
+    const el=document.createElement('div');
+    el.className='leaf';
+    el.innerHTML=segHTML(0,front,back,i===0);
+    book.appendChild(el);
+    const segs=[...el.querySelectorAll('.seg')];
+    leaves.push({el,segs,
+      fs:segs.map(g=>g.querySelector(':scope > .sf.front .sh')), bs:segs.map(g=>g.querySelector(':scope > .sf.back .sh')),
+      fg:segs.map(g=>g.querySelector(':scope > .sf.front .gl')), bg:segs.map(g=>g.querySelector(':scope > .sf.back .gl')),
+      pf:[], pb:[], bend: i===0 ? 0 : 38, dir:1,
+      a:0,from:0,to:0,t0:0,dur:0,busy:false});
+  }
+  const MAX = L-1;
+
+  // put a piece on leaf i, side 'f' (right page, x from spine) or 'b' (left page, x from outer edge)
+  function place(i, side, p){
+    const lf=leaves[i]; if(!lf) return;
+    const cx = p.x + p.w/2, fromSpine = side==='f' ? cx : 100-cx;
+    const k = Math.max(0, Math.min(N-1, Math.floor(fromSpine/SW)));
+    const host = lf.segs[k].querySelector(`:scope > .pw.${side==='f'?'front':'back'} .pop`);
+    host.insertAdjacentHTML('beforeend', pieceHTML(p));
+  }
+  function collect(){
+    leaves.forEach(lf=>{
+      const get = sel => { const all=[...lf.el.querySelectorAll(sel)]; return all.filter(e=>e.classList.contains('ltr-pe')).concat(all.filter(e=>!e.classList.contains('ltr-pe'))); };
+      lf.pf = get('.pw.front .pe'); lf.pb = get('.pw.back .pe');
+    });
+  }
+  coverPops.forEach(p=>place(0,'f',p));
+  spreads.forEach((s,k)=>s.pops.forEach(p=> p.s==='l' ? place(k,'b',p) : place(k+1,'f',p)));
+  collect();
+
+  /* the big word: measure each printed letter, then stand a cut-out letter over it */
+  const LZ=[.035,.08,.05,.1,.06,.09,.045];
+  function buildLetters(){
+    const meas=document.createElement('div');
+    meas.className='sfi back'; meas.style.cssText='left:-99999px;visibility:hidden';
+    book.appendChild(meas);
+    spreads.forEach((s,k)=>{
+      if(!s.big) return;
+      meas.innerHTML=spreadHTML(s,k);
+      const pw=meas.offsetWidth, ph=meas.offsetHeight, big=meas.querySelector('.big');
+      const bl=big.offsetLeft-big.offsetWidth/2, bt=big.offsetTop, fs=parseFloat(getComputedStyle(big).fontSize)/pw*100;
+      [...big.querySelectorAll('span')].forEach((sp,j)=>{
+        const x=(bl+sp.offsetLeft)/pw*100, y=(bt+sp.offsetTop)/ph*100, w=sp.offsetWidth/pw*100;
+        const p={ltr:true,x,y,w,z:LZ[j%LZ.length],c:s.fg,act:'jump',html:`<div class="ltr" style="font-size:${fs.toFixed(3)}em">${sp.textContent}</div>`};
+        if(x+w/2<100) place(k,'b',p); else place(k+1,'f',{...p,x:x-100});
+      });
+      const sc=meas.querySelector('.scr');
+      if(sc){
+        const x=sc.offsetLeft/pw*100, y=sc.offsetTop/ph*100, w=sc.offsetWidth/pw*100, f2=parseFloat(getComputedStyle(sc).fontSize)/pw*100;
+        const p={ltr:true,x,y,w,z:.13,c:s.acc,act:'jump',html:`<div class="scrp script" style="font-size:${f2.toFixed(3)}em">${sc.textContent}</div>`};
+        if(x+w/2<100) place(k,'b',p); else place(k+1,'f',{...p,x:x-100});
+      }
+    });
+    meas.remove();
+    collect();
+    document.body.classList.add('measured');
+    render();
+  }
+
+  /* ---------- render ---------- */
+  const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+  const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+  const easeOut=t=>1-Math.pow(1-t,3);
+  function lift(els,Lv){
+    const n=els.length, step=n>6?.07:.12;
+    els.forEach((e,k)=>{
+      const v = easeOut(clamp(Lv*(1+step*n) - k*step));
+      if(e._v!==v){ e._v=v; e.style.setProperty('--e',v.toFixed(3)); e.style.visibility = v<.01 ? 'hidden' : ''; }
+    });
+  }
+  function render(){
+    const ang=leaves.map(l=>l.a);
+    leaves.forEach((lf,i)=>{
+      const a=ang[i], turned=a>90;
+      const dz = turned ? -(i+1)*0.7 : (L-i)*0.7;
+      // paper curl: the outer strips lead (or trail) the spine while the page is in the air
+      const curl = (reduce?0:lf.bend) * Math.sin(a*Math.PI/180) * lf.dir;
+      let prevT=0;
+      const prev=ang[i-1]??0, next=ang[i+1]??0;
+      const castF = (prev>0&&prev<90) ? .45*Math.sin(prev*Math.PI/180) : 0;
+      const castB = (next>90&&next<180) ? .45*Math.sin(next*Math.PI/180) : 0;
+      lf.segs.forEach((g,k)=>{
+        const t = Math.max(0, Math.min(180, a + curl*Math.pow(k/(N-1),1.4)));
+        const rel = k===0 ? t : t-prevT; prevT=t;
+        g.style.transform = k===0 ? `rotateY(${-rel}deg) translateZ(${dz}px)` : `rotateY(${-rel}deg)`;
+        const f = Math.max(t<90?.6*(t/90):0, castF*(1-k*.12));
+        const b = Math.max(t>90?.6*((180-t)/90):0, castB*(.64+k*.12));
+        lf.fs[k].style.opacity=f.toFixed(3); lf.bs[k].style.opacity=b.toFixed(3);
+        const gl=Math.sin(t*Math.PI/180)*Math.max(0,Math.cos((t-70)*Math.PI/90));
+        lf.fg[k].style.opacity=t<90?(gl*.22).toFixed(3):0;
+        lf.bg[k].style.opacity=t>90?(Math.sin(t*Math.PI/180)*.12).toFixed(3):0;
+      });
+      lf.el.style.zIndex = turned ? L+i : L-i;
+      lf.el.classList.toggle('rest', !lf.busy && (a===0 || a===180));
+      // pop-ups stand up only while their page is open, and fold flat as a page closes over them
+      const prevA = i>0 ? ang[i-1] : 180, nextA = i<L-1 ? ang[i+1] : 0;
+      lift(lf.pf, Math.min(clamp((prevA-20)/70), clamp((120-a)/90)));
+      lift(lf.pb, Math.min(clamp((a-60)/90), clamp((160-nextA)/70)));
+    });
+    book.style.setProperty('--open',(ang[0]/180).toFixed(4));
+    book.style.setProperty('--lp',clamp((ang[0]-90)/90).toFixed(4));
+  }
+
+  let raf=0;
+  function loop(now){
+    let any=false;
+    leaves.forEach(l=>{
+      if(!l.busy) return;
+      if(now<l.t0){ any=true; return; }
+      const t=clamp((now-l.t0)/l.dur);
+      l.a=l.from+(l.to-l.from)*ease(t);
+      if(t>=1){ l.busy=false; l.a=l.to; } else any=true;
+    });
+    render();
+    raf = any ? requestAnimationFrame(loop) : 0;
+  }
+
+  let state=0;
+  function go(n){
+    n=Math.round(clamp(n,0,MAX));
+    if(n===state) return;
+    const dir=n>state?1:-1, count=Math.abs(n-state), riffle=count>1;
+    const order=[];
+    if(dir>0) for(let i=state;i<n;i++) order.push(i); else for(let i=state-1;i>=n;i--) order.push(i);
+    const now=performance.now();
+    order.forEach((i,k)=>{
+      const l=leaves[i];
+      l.from=l.a; l.to=dir>0?180:0; l.dir=dir;
+      l.t0=now+(reduce?0:k*(riffle?120:0));
+      l.dur=reduce?1:(riffle?720:1250);
+      l.busy=true;
+    });
+    state=n;
+    if(!raf) raf=requestAnimationFrame(loop);
+    ui();
+  }
+
+  /* ---------- ui ---------- */
+  const dots=document.getElementById('dots');
+  const dotDefs=[{tab:'Cover',c:'#55593E'}].concat(spreads.map(s=>({tab:s.tab,c:s.end?'#EFEDE8':s.bg})));
+  dotDefs.forEach((d,k)=>{
+    const b=document.createElement('button'); b.type='button'; b.style.setProperty('--c',d.c);
+    b.innerHTML=`<span>${d.tab}</span>`; b.setAttribute('aria-label',d.tab);
+    b.addEventListener('click',()=>{ if(document.body.classList.contains('is-intro')) openBook(k); else go(k); });
+    dots.appendChild(b);
+  });
+  const prevBtn=document.getElementById('prev'), nextBtn=document.getElementById('next');
+  const caption=document.getElementById('caption'), live=document.getElementById('live');
+  prevBtn.onclick=()=>go(state-1); nextBtn.onclick=()=>go(state+1);
+  function ui(){
+    [...dots.children].forEach((b,k)=>b.setAttribute('aria-current',k===state?'true':'false'));
+    prevBtn.disabled=state===0; nextBtn.disabled=state===MAX;
+    const s=spreads[state-1];
+    if(!s){ caption.innerHTML=''; live.textContent='Cover. My story, Linda Covino.'; return; }
+    caption.style.opacity=0;
+    setTimeout(()=>{
+      caption.innerHTML = s.end
+        ? `<div class="eyebrow">Where to next</div><h2>Or the beginning of yours</h2><p><a href="#courses">Explore the courses</a> · <a href="https://thevisualler.com" target="_blank" rel="noopener">Read The Visualler</a> · <a href="#contact">Get in touch</a></p>`
+        : `<div class="eyebrow">${s.eyebrow}</div><h2>${s.title}</h2>${s.body.map(p=>`<p>${p}</p>`).join('')}${s.q?`<p><em>${s.q}</em></p>`:''}${s.cta?`<p><a href="#courses">Explore the courses</a></p>`:''}`;
+      caption.style.opacity=1;
+    }, reduce?0:450);
+    live.textContent=`${s.eyebrow}. ${s.title}`;
+  }
+  document.getElementById('srstory').innerHTML = `<h1>About Linda Covino</h1>` + spreads.filter(s=>!s.end).map(s=>`<h2>${s.title}</h2>${s.body.map(p=>`<p>${p}</p>`).join('')}${s.q?`<p>${s.q}</p>`:''}`).join('');
+
+  /* ---------- intro ---------- */
+  /* living pieces: click to make them react */
+  let actx=null;
+  function ding(){
+    try{
+      actx = actx || new (window.AudioContext||window.webkitAudioContext)();
+      const t=actx.currentTime, out=actx.createGain(); out.gain.value=.18; out.connect(actx.destination);
+      [[2093,1],[2637,.5],[4186,.25],[5274,.12]].forEach(([f,a])=>{
+        const o=actx.createOscillator(), g=actx.createGain(); o.type='sine'; o.frequency.value=f;
+        g.gain.setValueAtTime(a,t); g.gain.exponentialRampToValueAtTime(.0001,t+1.6);
+        o.connect(g); g.connect(out); o.start(t); o.stop(t+1.7);
+      });
+    }catch(e){}
+  }
+  function react(pe){
+    const pa=pe.querySelector('.pa'), act=pe.dataset.act||'jump';
+    pa.classList.remove('act-jump','act-ring','act-spin'); void pa.offsetWidth;
+    pa.classList.add('act-'+act);
+    pa.addEventListener('animationend',()=>pa.classList.remove('act-'+act),{once:true});
+    if(act==='ring'){
+      ding();
+      const d=document.createElement('div'); d.className='ding'; d.textContent='ding!';
+      pe.querySelector('.pi').appendChild(d); setTimeout(()=>d.remove(),1000);
+    }
+  }
+
+  const body=document.body;
+  function openBook(target=1){
+    if(!body.classList.contains('is-intro')) return;
+    body.classList.remove('is-intro','entering');
+    setTimeout(()=>go(target), reduce?0:1000);
+  }
+  document.getElementById('openbtn').onclick=()=>openBook(1);
+  book.addEventListener('click',e=>{
+    if(e.target.closest('a')) return;
+    const pe=e.target.closest('.pe');
+    if(pe && !body.classList.contains('is-intro')){ react(pe); return; }
+    if(body.classList.contains('is-intro')) return openBook(1);
+    const r=book.getBoundingClientRect();
+    const onLeft = e.clientX < r.left + r.width/2;
+    go(state + (onLeft && state>0 ? -1 : 1));
+  });
+  if(reduce){ body.classList.add('landed'); }
+  else { body.classList.add('entering'); setTimeout(()=>body.classList.add('landed'),1900); }
+
+  /* depth: the book leans toward the mouse so the layers separate; touch screens get a slow sway */
+  const tilt=document.getElementById('tilt');
+  if(!reduce){
+    if(matchMedia('(hover: none)').matches) body.classList.add('sway');
+    addEventListener('pointermove',e=>{
+      if(e.pointerType!=='mouse' || body.classList.contains('is-intro')) return;
+      const x=e.clientX/innerWidth-.5, y=e.clientY/innerHeight-.5;
+      tilt.style.transform=`rotateX(${(-y*8).toFixed(2)}deg) rotateY(${(x*12).toFixed(2)}deg)`;
+    });
+    document.addEventListener('mouseleave',()=>{ tilt.style.transform=''; });
+  }
+
+  /* keyboard, wheel, swipe */
+  addEventListener('keydown',e=>{
+    if(body.classList.contains('is-intro')){ if(e.key==='Enter'||e.key==='ArrowRight'){ e.preventDefault(); openBook(1);} return; }
+    if(e.key==='ArrowRight'){ e.preventDefault(); go(state+1); }
+    if(e.key==='ArrowLeft'){ e.preventDefault(); go(state-1); }
+    if(e.key==='Home') go(0); if(e.key==='End') go(MAX);
+  });
+  let wheelLock=0;
+  addEventListener('wheel',e=>{
+    const now=Date.now(); if(now<wheelLock||Math.abs(e.deltaY)<18) return;
+    wheelLock=now+1100;
+    if(body.classList.contains('is-intro')){ if(e.deltaY>0) openBook(1); return; }
+    go(state+(e.deltaY>0?1:-1));
+  },{passive:true});
+  let sx=null;
+  addEventListener('pointerdown',e=>{ sx=e.pointerType==='touch'?e.clientX:null; });
+  addEventListener('pointerup',e=>{
+    if(sx===null) return; const dx=e.clientX-sx; sx=null;
+    if(Math.abs(dx)<45) return;
+    if(body.classList.contains('is-intro')) return openBook(1);
+    go(state+(dx<0?1:-1));
+  });
+
+  render(); ui();
+  Promise.all([document.fonts.load('800 100px Poppins'),document.fonts.load('40px YS')]).catch(()=>{}).then(()=>document.fonts.ready).then(buildLetters);
+})();
+</script>
+</body>
+</html>
