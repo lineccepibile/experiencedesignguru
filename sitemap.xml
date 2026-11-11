@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Add every new page here (course pages, quiz, how it works) and update lastmod when a page changes. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://experiencedesignguru.com/</loc>
+    <lastmod>2026-11-11</lastmod>
+  </url>
+  <url>
+    <loc>https://experiencedesignguru.com/about/</loc>
+    <lastmod>2026-11-11</lastmod>
+  </url>
+</urlset>

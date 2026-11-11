@@ -1,0 +1,46 @@
+# ExperienceDesignGuru: search engines and AI assistants are welcome.
+# We want to be found, cited and recommended.
+#
+# Content signals (Cloudflare's format): search = show in search results,
+# ai-input = use the pages to answer questions in AI assistants,
+# ai-train = use the pages to train AI models. Change ai-train to "no" to opt out of training only.
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+
+User-agent: *
+Allow: /
+
+# AI search and assistant crawlers, named so a blanket rule elsewhere never blocks them
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://experiencedesignguru.com/sitemap.xml

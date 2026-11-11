@@ -32,8 +32,33 @@ The script font is licensed, so it is **not** in this public repo (see `.gitigno
 
 Cloudflare Pages, connected to this repo: framework preset "None", no build command, output directory `/`.
 
+## Search and AI discovery
+
+What is already in the code:
+
+- `robots.txt`: welcomes search engines and AI assistants by name (ChatGPT, Claude, Perplexity, Gemini, Apple, Bing), with a Content-Signal line (search yes, AI answers yes, AI training yes: change `ai-train` to `no` to opt out of training only).
+- `sitemap.xml`: every public page. Add each new page here.
+- `llms.txt`: a plain summary of ExperienceDesignGuru, the courses, the free guides and Linda, written for AI assistants.
+- Structured data (JSON-LD): the home page describes the organisation, the website, Linda and the courses; the About page is a ProfilePage for Linda. Keep the course list in step with the store.
+- Every page has a title, a description, a canonical link and a social share preview (`assets/about/og-my-story.jpg`).
+- The About book's full story is written into the page (`#srstory`), so crawlers that do not run JavaScript can still read it.
+
+At launch (in this order):
+
+1. **Cloudflare: let AI crawlers in.** Cloudflare blocks AI crawlers by default on new domains. In the dashboard for experiencedesignguru.com, under AI Crawl Control, allow the search and assistant crawlers, and turn off Cloudflare's managed robots.txt so it does not replace ours. Then open https://experiencedesignguru.com/robots.txt and check it shows our file.
+2. **Google Search Console:** add the domain, submit `sitemap.xml`.
+3. **Bing Webmaster Tools:** import from Search Console and submit the sitemap. Bing's index feeds ChatGPT search and Copilot.
+4. Check the structured data with Google's Rich Results Test on `/` and `/about/`.
+
+Content that helps most (to add in the design):
+
+- One page per course, with its own clear heading, who it is for, what you learn and a link to the store. AI assistants recommend pages that answer one question well.
+- A short FAQ on the home page, in the words owners use ("How do I get more direct bookings for my B&B?", "How do I make guests remember my tour?").
+- Descriptive alt text on every image, and real text instead of text inside images.
+- Link the site from Instagram, Stan, The Visualler and LinkedIn, and keep the name "ExperienceDesignGuru" and "Linda Covino" written the same way everywhere.
+
 ## Still to do
 
 - Caorle photo with the coloured houses (current one is the bell tower)
 - Linda to rewrite the draft copy in each chapter
-- Link targets for "Explore the courses" (`#courses`) and "Get in touch" (`#contact`)
+- Link target for "Get in touch" (`#contact`)
